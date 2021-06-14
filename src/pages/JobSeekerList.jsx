@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Header, Table, Menu, Icon,Button } from "semantic-ui-react";
-import JobAdvertisementService from "../services/jobAdvertisementService";
+import JobSeekerService from "../services/jobSeekerService";
 
-export default function JobAdvertisementList() {
-    const [jobAdvertisement, setJobAdvertisement] = useState([]);
-  useEffect(() => {
-    let jobAdvertisementService = new JobAdvertisementService();
-    jobAdvertisementService
-      .getJobAdvertisements()
-      .then((result) => setJobAdvertisement(result.data.data));
-  }, []);
+export default function JobSeekerList() {
     
+    const [jobSeeker, setJobSeeker] = useState([]);
+  useEffect(() => {
+    let jobSeekerService = new JobSeekerService();
+    jobAdvertisementService
+      .getJobSeekers()
+      .then((result) => setJobSeeker(result.data.data));
+  }, []);
     
     return (
         <div>
             <Header as="h3" style={{ textAlign: "center" }}>
                 <br></br>
-        İş İlanları
+        İş Arayanlar
       </Header>
       <Table celled>
         <Table.Header style={{textAlign:"center"}}>
