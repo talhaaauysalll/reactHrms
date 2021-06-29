@@ -10,4 +10,7 @@ export default class JobAdvertisementService{
     getJobAdvertisementsCompanyName(companyName){
         return axios.get("http://localhost:8080/api/jobadvertisements/findByAllActiveJobPostingsForACompany?companyName="+companyName)
     }
+    getJobAdvertisementsDeActive(){
+        return axios.get("http://localhost:8080/api/jobadvertisements/findByAllDeActiveJobPostings")
+    }
 }
