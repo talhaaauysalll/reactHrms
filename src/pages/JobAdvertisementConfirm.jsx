@@ -9,7 +9,7 @@ export default function JobAdvertisementConfirm() {
   useEffect(() => {
     let jobAdvertisementService = new JobAdvertisementService();
     jobAdvertisementService
-      .getJobAdvertisementsDeActive()
+      .getAllJobAdvertisements()
       .then((result) => setJobAdvertisement(result.data.data));
   }, []);
   let systemPersonnelService = new SystemPersonnelService();
@@ -17,7 +17,7 @@ export default function JobAdvertisementConfirm() {
     systemPersonnelService
       .confirmJobAdvertisement(id, isConfirm)
       .then(toast.success("İş İlanı Onaylandı..."));
-      console.log(id);
+      
   };
 
   return (
@@ -30,8 +30,13 @@ export default function JobAdvertisementConfirm() {
         <Table.Header style={{ textAlign: "center" }}>
           <Table.Row>
           
+            <Table.HeaderCell>Pozisyon</Table.HeaderCell>
             <Table.HeaderCell>Firma Adı</Table.HeaderCell>
-            <Table.HeaderCell>İş Pozisyonu</Table.HeaderCell>
+            <Table.HeaderCell>Lokasyon</Table.HeaderCell>
+            <Table.HeaderCell>Çalışma Zamanı</Table.HeaderCell>
+            <Table.HeaderCell>Çalışma Tipi</Table.HeaderCell>
+            <Table.HeaderCell>Min Maaş</Table.HeaderCell>
+            <Table.HeaderCell>Max Maaş</Table.HeaderCell>
             <Table.HeaderCell>Açık Pozisyon Sayısı</Table.HeaderCell>
             <Table.HeaderCell>Yayınlanma Tarihi</Table.HeaderCell>
             <Table.HeaderCell>Son Başvuru Tarihi</Table.HeaderCell>
@@ -43,8 +48,13 @@ export default function JobAdvertisementConfirm() {
           {jobAdvertisement.map((jobAdvertisement) => (
             <Table.Row key={jobAdvertisement.id}>
               
-              <Table.Cell>{jobAdvertisement.employerName}</Table.Cell>
               <Table.Cell>{jobAdvertisement.jobTitleName}</Table.Cell>
+              <Table.Cell>{jobAdvertisement.companyName}</Table.Cell>
+              <Table.Cell>{jobAdvertisement.cityName}</Table.Cell>
+              <Table.Cell>{jobAdvertisement.workTimesName}</Table.Cell>
+              <Table.Cell>{jobAdvertisement.workTypeName}</Table.Cell>
+              <Table.Cell>{jobAdvertisement.minSalary}</Table.Cell>
+              <Table.Cell>{jobAdvertisement.maxSalary}</Table.Cell>
               <Table.Cell>{jobAdvertisement.numberOfOpenPositions}</Table.Cell>
               <Table.Cell>{jobAdvertisement.releaseDate}</Table.Cell>
               <Table.Cell>{jobAdvertisement.applicationDate}</Table.Cell>
@@ -65,7 +75,7 @@ export default function JobAdvertisementConfirm() {
 
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan="6">
+            <Table.HeaderCell colSpan="11">
               <Menu floated="right" pagination>
                 <Menu.Item as="a" icon>
                   <Icon name="chevron left" />
